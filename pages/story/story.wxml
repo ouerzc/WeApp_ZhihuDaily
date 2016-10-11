@@ -1,0 +1,38 @@
+<scroll-view scroll-y="true" class="contain_detail_cnt" style="">
+	<!-- 详情页图片 -->
+	<view >
+		<image class="scrollLoading" src="{{story.image}}"/>
+		<view class="title-view">
+			<text class="title-text">{{story.title}}</text>
+		</view>
+		<view class="image-source-view">
+			<text class="image-source-text">{{story.image_source}}</text>
+		</view>
+	</view>
+	<!-- 问题 -->
+	<view class="question">
+		<text class="question-title">{{question_title}}</text>
+	</view>
+	<!-- 作者 -->
+	<view class="meta">
+		<text class="author">{{author}}</text>
+		<text class="bio">{{bio}}</text>
+	</view>
+    <!-- 内容 -->
+	<view class="content" scroll-y="true">
+		<block wx:for="{{body_res}}">
+			<image class="scrollLoading" src="{{item.value}}" wx:if="{{item.type === 'img'}}"/>
+			<view class="contView" wx:if="{{item.type === 'p'}}">{{item.value}}</view>
+			<view class="contView" wx:if="{{item.type === 'strong'}}">{{item.value}}</view>
+		</block>
+	</view>
+</scroll-view>
+<!-- 评论 点赞 分享  -->
+<view class="extra">
+	<view class="extra-share">
+		<image src="../../static/img/share.png" class="extra-share-img" bindtap="showShare"/>
+		<image src="../../static/img/comments.png" class="extra-share-img"/>
+		<image src="../../static/img/zan.png" class="extra-share-img"/>
+	</view>
+	<input class="extra-input" type="text" maxlength="255" placeholder="你有什么看法?" placeholder-class="extra-placeholder" />
+</view>

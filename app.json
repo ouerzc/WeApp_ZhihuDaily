@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/story/story",
+    "pages/themes/themes",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "知乎日报",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar":{
+    "color": "#FFFFFF",
+    "selectedColor": "#E0EEEE",
+    "backgroundColor": "#00E5EE",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath":"pages/index/index",
+        "text":"首页",
+        "iconPath":"",
+        "selectedIconPath":""
+      },
+      {
+        "pagePath":"pages/themes/themes",
+        "text":"主题",
+        "iconPath":"",
+        "selectedIconPath":""
+      }
+    ]
+  }
+}

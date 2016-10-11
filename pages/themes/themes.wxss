@@ -1,0 +1,46 @@
+/**index.wxss**/
+.slide-image {
+  width: 100%;
+}
+
+.page-body {
+  background-color: #d0e0e3
+}
+
+page swiper {
+  height: 360rpx;
+}
+
+.item {
+  display: flex;
+  padding: 20rpx 40rpx;
+  border-bottom: 1rpx solid #eee;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 5rpx; 
+  border-radius:15rpx;
+}
+
+.item .item-img-view {
+  width: 128rpx;
+  height: 128rpx;
+  margin-right: 2rpx;
+}
+
+.item .item-img {
+  width: 128rpx;
+  height: 128rpx;
+  margin-right: 2rpx;
+}
+
+.item .item-title-view {
+  height: 128rpx;
+  margin-left: 8rpx;
+  text-align:center;
+  vertical-align: middle;
+}
+
+.item .item-title {
+  height: 100%;
+  margin: auto;
+}

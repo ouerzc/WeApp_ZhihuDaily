@@ -1,0 +1,28 @@
+<!--index.wxml-->
+
+<view class="page-body" >
+  <swiper indicator-dots="false"
+    duration="1000">
+    <block wx:for="{{topStories}}">
+      <swiper-item>
+        <image src="{{item.image}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="item">
+    
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore">
+    <navigator url="../story/story?id={{item.id}}" wx:for="{{stories}}">
+      <view class="item">
+        <view class="item-img-view">
+          <image class="item-img" src="{{item.images[0]}}"></image>
+        </view>
+        <view class="item-title-view">
+          <text class="item-title">{{item.title}}</text>
+        </view>
+      </view>
+    </navigator>
+  </scroll-view>
+
+</view>

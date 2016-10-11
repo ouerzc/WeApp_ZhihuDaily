@@ -1,0 +1,12 @@
+<scroll-view scroll-y="true" bindscrolltolower="loadMore">
+    <navigator url="../index/index?theme={{item.id}}" wx:for="{{others}}">
+      <view class="item">
+        <view class="item-img-view">
+          <image class="item-img" src="{{item.thumbnail}}"></image>
+        </view>
+        <view class="item-title-view">
+          <text class="item-title">{{item.name}}</text>
+        </view>
+      </view>
+    </navigator>
+  </scroll-view>
