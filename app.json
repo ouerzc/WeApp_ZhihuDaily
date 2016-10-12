@@ -13,22 +13,22 @@
     "enablePullDownRefresh": true
   },
   "tabBar":{
-    "color": "#FFFFFF",
-    "selectedColor": "#E0EEEE",
-    "backgroundColor": "#00E5EE",
-    "borderStyle": "white",
+    "color": "#DEDEDE",
+    "selectedColor": "#000000",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath":"pages/index/index",
         "text":"首页",
-        "iconPath":"",
-        "selectedIconPath":""
+        "iconPath":"static/img/icon-index.png",
+        "selectedIconPath":"static/img/icon-index-selected.png"
       },
       {
         "pagePath":"pages/themes/themes",
         "text":"主题",
-        "iconPath":"",
-        "selectedIconPath":""
+        "iconPath":"static/img/icon-theme.png",
+        "selectedIconPath":"static/img/icon-theme-selected.png"
       }
     ]
   }

@@ -10,11 +10,17 @@ page{ background: #FFF; font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif
 
 .title-view{
     position:absolute;
-    top:25%;
+    top:0px;
+    width:100%;
+    height: 420rpx;
+    background: linear-gradient(to top, rgba(30,30,30,1), rgba(30,30,30,0));
 }
 
 .title-text{
     color:#FFF;
+    bottom: 20rpx;
+    position: absolute;
+    margin: 40rpx;
 }
 
 .image-source-view {
@@ -27,6 +33,9 @@ page{ background: #FFF; font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif
 .image-source-text {
     color:#FFF;
     font-size: 15rpx;
+    position: absolute;
+    bottom: 30rpx;
+    right:10rpx;
 }
 
 .question-title {

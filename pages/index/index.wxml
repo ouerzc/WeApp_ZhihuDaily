@@ -1,28 +1,43 @@
 <!--index.wxml-->
 
 <view class="page-body" >
-  <swiper indicator-dots="false"
-    duration="1000">
-    <block wx:for="{{topStories}}">
-      <swiper-item>
-        <image src="{{item.image}}" class="slide-image"/>
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="item">
-    
-  </view>
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore">
-    <navigator url="../story/story?id={{item.id}}" wx:for="{{stories}}">
-      <view class="item">
-        <view class="item-img-view">
-          <image class="item-img" src="{{item.images[0]}}"></image>
-        </view>
-        <view class="item-title-view">
-          <text class="item-title">{{item.title}}</text>
-        </view>
-      </view>
-    </navigator>
-  </scroll-view>
 
+  <scroll-view scroll-y="true" style="height: {{winHeight}}px;" bindscrolltolower="loadMore">
+    <!-- 首页轮播图 -->
+    <swiper indicator-dots="false"
+      duration="1000">
+      <block wx:for="{{topStories}}">
+        <swiper-item>
+          <navigator url="../story/story?id={{item.id}}">
+            <view>
+              <image class="slide-image" src="{{item.image}}" />
+            </view>
+            <view class="title-view">
+              <text class="title-text">{{item.title}}</text>
+            </view>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <block wx:for="{{stories}}" wx:for-item="storyList">
+      <!-- 日报日期 -->
+      <view class="daily-date">
+        今日热闻{{storyList.date}}
+      </view>
+
+      <!-- 日报列表 -->
+      <navigator url="../story/story?id={{story.id}}" wx:for="{{storyList.stories}}" wx:for-item="story">
+        <view class="item">
+          <view class="item-img-view">
+            <image class="item-img" src="{{story.images[0]}}"></image>
+          </view>
+          <view class="item-title-view">
+            <text class="item-title">{{story.title}}</text>
+          </view>
+        </view>
+      </navigator>
+    </block>
+    
+  </scroll-view>
 </view>

@@ -1,13 +1,14 @@
 <scroll-view scroll-y="true" class="contain_detail_cnt" style="">
 	<!-- 详情页图片 -->
-	<view >
+	<view style="height:220px">
 		<image class="scrollLoading" src="{{story.image}}"/>
 		<view class="title-view">
 			<text class="title-text">{{story.title}}</text>
-		</view>
-		<view class="image-source-view">
 			<text class="image-source-text">{{story.image_source}}</text>
 		</view>
+		<!--<view class="image-source-view">
+			
+		</view>-->
 	</view>
 	<!-- 问题 -->
 	<view class="question">

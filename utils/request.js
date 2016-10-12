@@ -2,9 +2,10 @@ var utils = require('./util.js');
 
 var api = {
     latestNews: "http://news-at.zhihu.com/api/4/news/latest", //最新消息api
+    beforeNews: "http://news.at.zhihu.com/api/4/news/before", //获取过往信息api
     newsDetail: "http://news-at.zhihu.com/api/4/news",
     themes: "http://news-at.zhihu.com/api/4/themes",
-    themesList: "http://news-at.zhihu.com/api/4/theme"
+    themesList: "http://news-at.zhihu.com/api/4/theme",
 }
 
 /**
@@ -32,6 +33,11 @@ function getLatestNews(data, successCb, errorCb, completeCb){
     request(api.latestNews, data, successCb, errorCb, completeCb);
 }
 
+//获取过往信息
+function getBeforeNews(date, successCb, errorCb, completeCb){
+    request(api.beforeNews + "/" + date, {}, successCb, errorCb, completeCb);
+}
+
 //获取消息详细
 function getNewsDetail(id, successCb, errorCb, completeCb){
     request(api.newsDetail + "/" + id, {}, successCb, errorCb, completeCb);
@@ -48,6 +54,7 @@ function getThemesList(id, successCb, errorCb, completeCb){
 }
 module.exports = {
   getLatestNews: getLatestNews,
+  getBeforeNews: getBeforeNews,
   getNewsDetail: getNewsDetail,
   getThemes: getThemes,
   getThemesList: getThemesList

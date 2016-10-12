@@ -1,14 +1,35 @@
 /**index.wxss**/
-.slide-image {
-  width: 100%;
-}
-
-.page-body {
+page {
   background-color: #d0e0e3
 }
 
 page swiper {
   height: 360rpx;
+}
+
+.slide-image {
+  width: 100%;
+  height:360rpx;
+}
+
+.title-view{
+    position:absolute;
+    top:0px;
+    width:100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 25%,rgba(0,0,0,0.6) 100%);
+}
+
+.title-text{
+    color:#FFF;
+    bottom: 20rpx;
+    position: absolute;
+    margin: 40rpx;
+}
+
+.daily-date {
+  margin: 20rpx;
+  font-size: 24rpx;
 }
 
 .item {
@@ -17,12 +38,12 @@ page swiper {
   border-bottom: 1rpx solid #eee;
   cursor: pointer;
   background-color: #fff;
-  margin: 5rpx; 
+  margin: 6rpx; 
   border-radius:15rpx;
 }
 
 .item .item-img-view {
-  width: 128rpx;
+  width: 20%;
   height: 128rpx;
   margin-right: 2rpx;
 }
@@ -38,6 +59,7 @@ page swiper {
   margin-left: 8rpx;
   text-align:center;
   vertical-align: middle;
+  width: 80%;
 }
 
 .item .item-title {
