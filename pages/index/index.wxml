@@ -27,7 +27,7 @@
       </view>
 
       <!-- 日报列表 -->
-      <navigator url="../story/story?id={{story.id}}" wx:for="{{storyList.stories}}" wx:for-item="story">
+      <navigator  wx:for="{{storyList.stories}}" wx:for-item="story" url="../story/story?id={{story.id}}">
         <view class="item">
           <view class="item-img-view">
             <image class="item-img" src="{{story.images[0]}}"></image>

@@ -6,6 +6,7 @@ var api = {
     newsDetail: "http://news-at.zhihu.com/api/4/news",
     themes: "http://news-at.zhihu.com/api/4/themes",
     themesList: "http://news-at.zhihu.com/api/4/theme",
+    comments: "http://news-at.zhihu.com/api/4/story/",
 }
 
 /**
@@ -52,10 +53,22 @@ function getThemes(data, successCb, errorCb, completeCb){
 function getThemesList(id, successCb, errorCb, completeCb){
     request(api.themesList + "/" + id, {}, successCb, errorCb, completeCb);
 }
+
+//获取日报短评论
+function getShortComments(id, successCb, errorCb, completeCb){
+    request(api.comments + "/" + id + "/short-comments", {}, successCb, errorCb, completeCb);
+}
+
+//获取日报长评论
+function getLongComments(id, successCb, errorCb, completeCb){
+    request(api.comments + "/" + id + "/long-comments", {}, successCb, errorCb, completeCb);
+}
 module.exports = {
   getLatestNews: getLatestNews,
   getBeforeNews: getBeforeNews,
   getNewsDetail: getNewsDetail,
   getThemes: getThemes,
-  getThemesList: getThemesList
+  getThemesList: getThemesList,
+  getShortComments: getShortComments,
+  getLongComments: getLongComments,
 }

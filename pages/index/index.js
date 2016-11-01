@@ -20,7 +20,7 @@ Page({
         pageType: 1,
         themeId: option.theme
       })
-      getThemesList.call(this);
+      getThemesList.call(this, option.theme);
     }else{
       getLatestNews.call(this);
     }
@@ -52,9 +52,29 @@ Page({
     var year = currDate.slice(0, 4);
     var month = currDate.slice(4, 6);
     var day = currDate.slice(6);
+
+    var monthCountDay = {
+      1:31,
+      2:30,
+      3:31,
+      4:30,
+      5:31,
+      6:30,
+      7:31,
+      8:31,
+      9:30,
+      10:31,
+      11:30,
+      12:31,
+    };
+
     console.log("year:"+year, "month:"+month,"day:"+day);
     if(day - 1 > 0){
       var beforeDate = year + month + day;
+      getBeforeNews.call(this, beforeDate);
+    }else{
+      var lastMonth = month - 1;
+      var beforeDate = year + lastMonth + monthCountDay[lastMonth];
       getBeforeNews.call(this, beforeDate);
     }
   }
@@ -110,10 +130,10 @@ function getBeforeNews(date){
 }
 
 //获取主题日报详细列表
-function getThemesList(){
+function getThemesList(theme_id){
   var that = this
   console.log(that);
-  requests.getThemesList( that.data.themeId, ( data ) => {
+  requests.getThemesList( theme_id, ( data ) => {
     console.log("getThemesList",data);
     that.setData(
       {

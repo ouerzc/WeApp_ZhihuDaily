@@ -1,5 +1,8 @@
 //story.js
 var requests = require('../../utils/request.js');
+
+var WxParse = require('../../wxParse/wxParse.js');
+
 //获取应用实例
 var app = getApp()
 
@@ -10,12 +13,15 @@ Page({
     body_res: null,
     question_title: null,
     author: null,
-    bio: null
+    bio: null,
+    modalHidden:true,
+    comments: [],
+    commentsHidden: true,
   },
   onLoad: function (option) {
     console.log('onLoad option',option);
-    this.setData({id: option.id})
-    getNewsDetail.call(this);
+    this.setData({id: option.id});
+    getNewsDetail.call(this, option.id);
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -24,20 +30,139 @@ Page({
         userInfo:userInfo
       })
     })
-  }
+
+    wx.getSystemInfo( {
+        success: function( res ) {
+            that.setData( {
+                winWidth: res.windowWidth,
+                winHeight: res.windowHeight
+            });
+        }
+    });
+  },
+
+  loadComments: function(){
+    console.log("loadComments");
+    var that = this;
+    console.log("that",that);
+    var news_id = that.data.id;
+    requests.getShortComments( news_id, ( data ) => {
+      console.log("getShortComments",data);
+      that.setData(
+        {
+          "commentsHidden": false,
+          "comments": data.comments,
+        }
+      )
+      getDetailInfo(that, data.body);
+    }, () =>{
+      console.log("request err")
+    }, () => {
+      console.log("request conplete")
+    });
+  },
+
+  showShare:function(){
+    console.log("showShare");
+    // 创建动画
+    var animation = wx.createAnimation( {
+        duration: 100,
+        timingFunction: "ease",
+    })
+    this.animation = animation;
+
+    var that = this;
+    that.setData( {
+        shareShow: "block",
+    });
+
+    setTimeout( function() {
+        that.animation.bottom( 0 ).step();
+        that.setData( {
+            shareBottom: animation.export()
+        });
+    }.bind( this ), 400 );
+
+    // 遮罩层
+    setTimeout( function() {
+        that.animation.opacity( 0.3 ).step();
+        that.setData( {
+            shareOpacity: animation.export()
+        });
+    }.bind( this ), 400 );
+  },
+
+    /**
+   * 关闭分享
+   */
+  shareClose: function() {
+    // 创建动画
+    var animation = wx.createAnimation( {
+        duration: 0,
+        timingFunction: "ease"
+    })
+    this.animation = animation;
+
+    var that = this;
+
+    setTimeout( function() {
+        that.animation.bottom( -210 ).step();
+        that.setData( {
+            shareBottom: animation.export()
+        });
+    }.bind( this ), 500 );
+
+    setTimeout( function() {
+        that.animation.opacity( 0 ).step();
+        that.setData( {
+            shareOpacity: animation.export()
+        });
+    }.bind( this ), 500 );
+
+    setTimeout( function() {
+        that.setData( {
+            shareShow: "none",
+        });
+    }.bind( this ), 1500 );
+  },
+
+    /**
+   * 点击分享图标弹出层
+   */
+  modalTap: function( e ) {
+      var that = this;
+      that.setData( {
+          modalHidden: false,
+          modalValue: e.target.dataset.share
+      })
+  },
+  
+  /**
+   * 关闭弹出层
+   */
+  modalChange: function( e ) {
+      var that = this;
+      that.setData( {
+          modalHidden: true
+      })
+  },
+
+
 });
 
 
-function getNewsDetail(){
-  var that = this
-  requests.getNewsDetail( that.data.id, ( data ) => {
+function getNewsDetail(news_id){
+  var that = this;
+  console.log(news_id);
+  requests.getNewsDetail( news_id, ( data ) => {
     console.log("getNewsDetail",data);
     that.setData(
       {
         "story": data,
+        wxParseData:WxParse('html',data.body)
       }
     )
-    getDetailInfo(that);
+    getDetailInfo(that, data.body);
   }, () =>{
     console.log("request err")
   }, () => {
@@ -46,8 +171,8 @@ function getNewsDetail(){
 }
 
 //处理知乎日报api反回来的html结构
-function getDetailInfo(that){
-  var body = that.data.story.body
+function getDetailInfo(that, story_body){
+  var body = story_body;
   //截取问题标题
   var question_title = body.match(/<h2 class=\"question-title\">(.*?)<\/h2>/)
   //截取作者信息
