@@ -903,7 +903,7 @@ body.dudu-night,
   background-image: url(http://static.daily.zhihu.com/img/Dark_News_Column_Entrance_Highlight.png);
 }
 
-//ç¦ç”¨å¤´éƒ¨ä¸‹é¢çš„åˆ†éš”çº¿
+
 .dudu .headline {
   border-bottom: none;
 }

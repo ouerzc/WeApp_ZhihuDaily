@@ -1,12 +1,12 @@
 var utils = require('./util.js');
 
 var api = {
-    latestNews: "http://news-at.zhihu.com/api/4/news/latest", //最新消息api
-    beforeNews: "http://news.at.zhihu.com/api/4/news/before", //获取过往信息api
-    newsDetail: "http://news-at.zhihu.com/api/4/news",
-    themes: "http://news-at.zhihu.com/api/4/themes",
-    themesList: "http://news-at.zhihu.com/api/4/theme",
-    comments: "http://news-at.zhihu.com/api/4/story/",
+    latestNews: "https://news-at.zhihu.com/api/4/news/latest", //最新消息api
+    beforeNews: "https://news-at.zhihu.com/api/4/news/before", //获取过往信息api
+    newsDetail: "https://news-at.zhihu.com/api/4/news",
+    themes: "https://news-at.zhihu.com/api/4/themes",
+    themesList: "https://news-at.zhihu.com/api/4/theme",
+    comments: "https://news-at.zhihu.com/api/4/story/",
 }
 
 /**

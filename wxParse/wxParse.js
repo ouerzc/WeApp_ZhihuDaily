@@ -24,7 +24,7 @@ function wxParse(type,data){
   }else if(type == 'html'){
     data = wxDiscode.strDiscode(data);
     var json = HtmlToJson(data);
-	  console.log(JSON.stringify(json, ' ', ' '));
+	  //console.log(JSON.stringify(json, ' ', ' '));
     wxParseData = json.child;
   }else if(type == 'md' || type == 'markdown'){
     var converter = new showdown.Converter();

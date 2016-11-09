@@ -125,7 +125,7 @@ function getBeforeNews(date){
   }, () =>{
     console.log("request err")
   }, () => {
-    console.log("request conplete")
+    console.log("request complete")
   });
 }
 

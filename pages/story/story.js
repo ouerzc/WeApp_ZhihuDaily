@@ -20,8 +20,13 @@ Page({
   },
   onLoad: function (option) {
     console.log('onLoad option',option);
+    wx.showToast({
+      title: '加载中...',
+      icon: 'loading',
+      duration: 1500
+    })
     this.setData({id: option.id});
-    getNewsDetail.call(this, option.id);
+    getNewsDetail.call(this, option.id, () =>{wx.hideToast();});
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -151,7 +156,7 @@ Page({
 });
 
 
-function getNewsDetail(news_id){
+function getNewsDetail(news_id, callback){
   var that = this;
   console.log(news_id);
   requests.getNewsDetail( news_id, ( data ) => {
@@ -163,6 +168,7 @@ function getNewsDetail(news_id){
       }
     )
     getDetailInfo(that, data.body);
+    // callback();
   }, () =>{
     console.log("request err")
   }, () => {
